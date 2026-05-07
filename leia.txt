@@ -1,0 +1,24 @@
+INSTALAR DEPENDÊNCIAS
+
+No terminal:
+
+npm init -y
+npm install express
+
+ RODAR
+ 
+node server.js
+
+Acesse:
+
+http://localhost:3000
+
+Quando a pessoa clicar e aceitar compartilhar localização, salva:
+
+latitude
+longitude
+precisão
+horário
+IP do acesso
+
+Salva tudo no logs.txt.

